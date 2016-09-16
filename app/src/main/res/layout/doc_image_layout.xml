@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_margin="10dp"
+    android:weightSum="4"
+    android:background="@drawable/image_background"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/doc_imgImage"
+        android:src="@drawable/no_img"
+        android:layout_width="match_parent"
+        android:layout_weight="3"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:onClick="ShowPhoto"
+        android:layout_toLeftOf="@+id/imageView"
+        android:layout_toStartOf="@+id/imageView" />
+
+  <!--  <com.joooonho.SelectableRoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/doc_imgImage"
+        android:src="@drawable/no_img"
+        android:layout_width="match_parent"
+        android:layout_weight="3"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:scaleType="centerCrop"
+        app:sriv_left_top_corner_radius="16dip"
+        app:sriv_right_top_corner_radius="16dip"
+        app:sriv_left_bottom_corner_radius="16dip"
+        app:sriv_right_bottom_corner_radius="16dip"
+        app:sriv_border_width="2dip"
+        app:sriv_border_color="@color/colorBorder"
+        app:sriv_oval="false" />-->
+
+
+    <TextView
+        android:id="@+id/tvNameAndNumber"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="Photo Id"
+        android:textSize="20dp"
+        android:layout_height="0dp" />
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="vztrack.gls.com.vztracksociety.AddUserActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/colorBackground"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/circularimage"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:onClick="ShowPhoto"
+                android:id="@+id/imgPhoto"
+                android:layout_toLeftOf="@+id/imageView"
+                android:layout_toStartOf="@+id/imageView" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:layout_marginTop="2dp"
+                android:text="Visitor's Photo"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:onClick="EditPhoto"
+                android:src="@drawable/ic_action_edit"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/etName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:text="New User"/>
+
+                    <TextView
+                        android:id="@+id/etMobileNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="15dp"
+                        android:text="8956234587"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                   <!-- <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/imgId"
+                        android:background="@drawable/touch_effect"
+                        android:src="@drawable/no_img"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="0dp"
+                        android:onClick="ShowDocument"
+                        android:layout_toLeftOf="@+id/imageView"
+                        android:layout_toStartOf="@+id/imageView" />-->
+
+
+                    <com.joooonho.SelectableRoundedImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/imgId"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/no_img"
+                        android:scaleType="centerCrop"
+                        android:onClick="ShowDocument"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:sriv_left_top_corner_radius="16dip"
+                        app:sriv_right_top_corner_radius="16dip"
+                        app:sriv_left_bottom_corner_radius="16dip"
+                        app:sriv_right_bottom_corner_radius="16dip"
+                        app:sriv_border_width="1dip"
+                        app:sriv_border_color="#000000"
+                        app:sriv_oval="false" />
+
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:text="Photo Id"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:onClick="EditDoc"
+                    android:src="@drawable/ic_action_edit"/>
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgHidden"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:textColor="@color/colorHint"
+                android:text="Purpose of visit"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Please fill in the details"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:weightSum="9"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_Name"
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/etOwerName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="textCapCharacters"
+                        android:textColor="@color/colorBlack"
+                        android:layout_marginRight="10dp"
+                        android:scrollbars="horizontal"
+                        android:dropDownWidth="match_parent"
+                        android:hint="Flat no. or owner name(घर नं या मालिक का नाम)"
+                        android:textSize="20dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:onClick="ClearData"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/touch_effect"
+                    android:src="@drawable/ic_clear"/>
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/etWhomLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                android:visibility="gone"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/etWhom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
+                    android:singleLine="true"
+                    android:maxLength="40"
+                    android:hint="Whom to see (किसे मिलना है)"
+                    android:textSize="20dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginLeft="2dp"
+                android:textSize="16sp"
+                android:text="Vehicle number (गाड़ी नं)"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:weightSum="5"
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/etVehilceNo1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack"
+                    android:background="@drawable/edittext_background"
+                    android:layout_marginLeft="5dp"
+                    android:inputType="textCapCharacters"
+                    android:singleLine="true"
+                    android:layout_marginRight="3dp"
+                    android:maxLength="2"
+                    android:textSize="20dp"
+                    android:text="MH"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"/>
+
+                <EditText
+                    android:id="@+id/etVehilceNo2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="20dp"
+                    android:background="@drawable/edittext_background"
+                    android:maxLength="2"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"/>
+
+                <EditText
+                    android:id="@+id/etVehilceNo3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:layout_marginRight="3dp"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="3dp"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                    android:textSize="20dp"
+                    android:inputType="textCapCharacters"
+                    android:background="@drawable/edittext_background"
+                    android:maxLength="2"
+                    android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"/>
+
+                <EditText
+                    android:id="@+id/etVehilceNo4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:background="@drawable/edittext_background"
+                    android:textSize="20dp"
+                    android:maxLength="4"
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/colorAccent"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/etVisitersLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp">
+
+                    <EditText
+                        android:id="@+id/etVisiters"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:maxLength="40"
+                        android:text="1"
+                        android:digits="123456789"
+                        android:hint="Total visitors (कुल मुलाक़ाती)"
+                        android:textSize="20dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="10dp"
+                    android:onClick="Remove"
+                    android:padding="10dp"
+                    android:background="@drawable/color_bg_selector_for_remov"/>
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:onClick="Add"
+                    android:padding="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/color_bg_selector_for_add"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/etFromLayout"
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.2"
+                    android:layout_height="wrap_content"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    android:layout_marginTop="5dp">
+
+                    <EditText
+                        android:id="@+id/etFrom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:inputType="textCapCharacters"
+                        android:singleLine="true"
+                        android:maxLength="40"
+                        android:hint="From (कहाँ से)"
+                        android:textSize="20dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/ib_speak2"
+                    style="android: attr/borderlessButtonStyle;"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Search"
+                    android:onClick="SpeekFrom"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right|center_vertical"
+                    android:src="@drawable/ic_keyboard_voice"/>
+
+
+            </LinearLayout>
+
+
+
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginLeft="2dp"-->
+            <!--android:layout_marginRight="2dp"-->
+            <!--android:background="@color/colorAccent"/>-->
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginBottom="2dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Purpose of visit ( आने का उद्देश्)"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/edittext_background">
+
+                <Spinner
+                    android:id="@+id/etPurpose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:fitsSystemWindows="true"
+                    android:maxLength="40"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:background="#E0E0E0"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/color_bg_selector"
+                android:onClick="Save"
+                android:text="SUBMIT"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="vztrack.gls.com.vztracksociety">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Network State Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/security_app_logo"
+        android:label="@string/title"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon , android:label">
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".SearchActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AddUserActivity"
+            android:parentActivityName=".SearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".GetDetailsActivity"
+            android:parentActivityName=".SearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".NoInternetConnection"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".SearchVehicle"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".SearchActivity"></activity>
+
+        <activity
+            android:name="vztrack.gls.com.vztracksociety.RecyclerViewExample"
+            android:screenOrientation="portrait"></activity>
+
+        <receiver android:name="vztrack.gls.com.vztracksociety.broadcast.NetworkChangeReceiver" android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+
+        </receiver>
+
+    </application>
+
+</manifest>
