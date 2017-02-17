@@ -8,6 +8,8 @@
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     android:paddingTop="5dp"
+    android:fitsSystemWindows="true"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     tools:context="vztrack.gls.com.vztracksociety.AddUserActivity">
 
     <LinearLayout
@@ -82,6 +84,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
@@ -126,6 +130,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
@@ -169,6 +175,8 @@
             android:layout_height="wrap_content"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             android:textColorHint="@color/colorPrimaryDark"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="1dp">
 
             <EditText
@@ -191,7 +199,7 @@
             android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
             android:text="Photo ID (optional)"
-            android:layout_marginLeft="3dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/textView6"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
@@ -253,7 +261,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
+          <!--  <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
@@ -261,7 +269,30 @@
                 android:layout_marginRight="40dp"
                 android:background="@drawable/color_bg_selector"
                 android:onClick="Submit"
-                android:text="SUBMIT"/>
+                android:text="SUBMIT"/>-->
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnSubmit"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:onClick="Submit"
+                fancy:fb_borderColor="@color/colorBlack"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="#3b5998"
+                fancy:fb_focusColor="#5577bd"
+                fancy:fb_iconPosition="right"
+                fancy:fb_radius="6dp"
+                fancy:fb_text="ADD DETAILS"
+                fancy:fb_textColor="#FFFFFF"/>
+
+
+
         </LinearLayout>
 
 

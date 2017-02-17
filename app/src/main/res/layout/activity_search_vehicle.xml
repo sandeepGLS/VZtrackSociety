@@ -8,6 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="vztrack.gls.com.vztracksociety.SearchVehicle">
 
 
@@ -39,11 +40,6 @@
         </Spinner>
 
     </LinearLayout>
-
-
-
-
-
 
     <View
         android:layout_width="match_parent"
@@ -186,7 +182,7 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -194,7 +190,8 @@
                 android:text="Visitor Name"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvFlatAndEmp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -202,7 +199,7 @@
             android:text="Flat Number"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_weight="1"
@@ -210,12 +207,21 @@
             android:text="Vehicle Number"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Time"/>
+                android:text="In Time"/>
+
+            <TextView
+                android:id="@+id/tvOut"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Out Time"/>
 
         </LinearLayout>
 

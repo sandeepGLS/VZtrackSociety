@@ -3,15 +3,12 @@ package vztrack.gls.com.vztracksociety.utils;
 import android.app.ProgressDialog;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
 
 import vztrack.gls.com.vztracksociety.BaseActivity;
 import vztrack.gls.com.vztracksociety.R;
@@ -58,8 +55,10 @@ public class PostData extends AsyncTask {
     @Override
     protected Object doInBackground(Object[] params) {
         Log.e("URL ===>",url);
+        Log.e("DATA ===>",data);
         try {
             result = ServerConnection.giveResponse(url,data);
+            Log.e("RESP"," "+result);
         } catch (Exception e){
             Log.e("Error doInBackground",e.toString());
             e.printStackTrace();
@@ -73,7 +72,7 @@ public class PostData extends AsyncTask {
         {
             super.onPostExecute(o);
             progressDialog.dismiss();
-            if(result.contains("org.apache.http.conn.ConnectTimeoutException")){
+            if(result.contains("ConnectTimeoutException")){
                 ShowToast("Please check intenet connection \n इंटरनेट कनेक्शन की जाँच करें");
             }else{
                 activity.onGetResponse(result, callFor);

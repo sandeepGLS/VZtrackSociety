@@ -23,5 +23,9 @@
     <color name="red_press">#990000</color>
     <color name="dark_gray">#4C535B</color>
     <color name="dark_gray_press">#ff7e8a97</color>
+    <color name="sky_blue">#90CAF9</color>
+    <color name="green">#9CCC65</color>   <!-- #9CCC65  // -->
+    <color name="recycler_text_color">#ffffff</color>
+    <color name="gray">#009688</color>
 
 </resources>

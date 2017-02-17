@@ -19,7 +19,6 @@ public class CheckConnection {
     }
 
     public boolean isConnectingToInternet() {
-
         ConnectivityManager connectivity = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null) {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();

@@ -1,13 +1,18 @@
 package vztrack.gls.com.vztracksociety;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -47,13 +52,19 @@ public class SearchVehicle extends BaseActivity {
     private String[] FlatNo ;
     private String[] VehicleNo ;
     private String[] Time ;
+    private String[] OutTime ;
     private String[] OwnerName ;
+    private TextView tvOut ;
     private TextView tvShowHide ;
+    private String showUI ;
+    TextView mTitleTextView,tvFlatAndEmp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_vehicle);
+        Bundle extras = getIntent().getExtras();
+        showUI= extras.getString("UI_VAL");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -65,10 +76,24 @@ public class SearchVehicle extends BaseActivity {
         etVehicel_no2 = (EditText) findViewById(R.id.etVehilceNo2);
         etVehicel_no3 = (EditText) findViewById(R.id.etVehilceNo3);
         etVehicel_no4 = (EditText) findViewById(R.id.etVehilceNo4);
-
+        tvOut = (TextView) findViewById(R.id.tvOut);
+        tvFlatAndEmp = (TextView) findViewById(R.id.tvFlatAndEmp);
         tvShowHide = (TextView) findViewById(R.id.tvShowHide);
-
         context = SearchVehicle.this;
+
+        getSupportActionBar().setTitle("Loading...");
+
+
+        if(showUI.equals("0")){
+            tvOut.setVisibility(View.GONE);
+        }
+
+        if(SheredPref.getType(context).equals("0")){
+            tvFlatAndEmp.setText("Flat Number");
+        }
+        if(SheredPref.getType(context).equals("1")){
+            tvFlatAndEmp.setText("Employee");
+        }
 
         // Check Internet Connection
         CheckConnection cc = new CheckConnection(getApplicationContext());
@@ -235,8 +260,6 @@ public class SearchVehicle extends BaseActivity {
                     }
                 });
     }
-
-
     public void SearchVehicleNo(View v)
     {
 
@@ -271,9 +294,8 @@ public class SearchVehicle extends BaseActivity {
             }
 
             if (callFor.equals(CallFor.SEARCHVEHICLE)) {
-
                 if (searchResponse.getCode().equals("SUCCESS")) {
-
+                    getSupportActionBar().setTitle("Searched Visitors Count : "+searchResponse.getVisitors().size());
                     for(int i=0;i<searchResponse.getVisitors().size();i++)
                     {
                         if(i==0)
@@ -281,18 +303,22 @@ public class SearchVehicle extends BaseActivity {
                             FlatNo = new String[searchResponse.getVisitors().size()];
                             VehicleNo = new String[searchResponse.getVisitors().size()];
                             Time = new String[searchResponse.getVisitors().size()];
+                            OutTime = new String[searchResponse.getVisitors().size()];
                             OwnerName = new String[searchResponse.getVisitors().size()];
 
                             FlatNo[i] = searchResponse.getVisitors().get(i).getFlat_no();
                             VehicleNo[i] =  searchResponse.getVisitors().get(i).getVehicle_no();
                             Time[i] =  searchResponse.getVisitors().get(i).getIn_time();
-                            OwnerName[i] =  searchResponse.getVisitors().get(i).getFirst_name()+" "+searchResponse.getVisitors().get(i).getLast_name();
+                            OutTime[i] =  searchResponse.getVisitors().get(i).getOut_time();
+                            OwnerName[i] =  searchResponse.getVisitors().get(i).getFirst_name()+" "+searchResponse.getVisitors().get(i).getLast_name()+"\n"+searchResponse.getVisitors().get(i).getNo_of_visitors();
                         }
 
                         FlatNo[i] = searchResponse.getVisitors().get(i).getFlat_no();
                         VehicleNo[i] =  searchResponse.getVisitors().get(i).getVehicle_no();
                         Time[i] =  searchResponse.getVisitors().get(i).getIn_time();
-                        OwnerName[i] =  searchResponse.getVisitors().get(i).getFirst_name()+" "+searchResponse.getVisitors().get(i).getLast_name();
+                        OutTime[i] =  searchResponse.getVisitors().get(i).getOut_time();
+                        OwnerName[i] =  searchResponse.getVisitors().get(i).getFirst_name()+" "+searchResponse.getVisitors().get(i).getLast_name()+"\n"+searchResponse.getVisitors().get(i).getNo_of_visitors();
+                        Log.e("VAL NO "," "+searchResponse.getVisitors().get(i).getNo_of_visitors());
                     }
 
                     if(searchResponse.getVisitors().size()==0)
@@ -302,7 +328,6 @@ public class SearchVehicle extends BaseActivity {
                     }
                     else
                     {
-
                         for (int i = 0; i < FlatNo.length / 2; i++) {
                             String temp = FlatNo[i]; // swap value
                             FlatNo[i] = FlatNo[FlatNo.length - 1 - i];
@@ -323,6 +348,12 @@ public class SearchVehicle extends BaseActivity {
                             Time[Time.length - 1 - i] = temp;
                         }
 
+                        for (int i = 0; i < OutTime.length / 2; i++) {
+                            String temp = OutTime[i]; // swap value
+                            OutTime[i] = OutTime[OutTime.length - 1 - i];
+                            OutTime[OutTime.length - 1 - i] = temp;
+                        }
+
                         for (int i = 0; i < OwnerName.length / 2; i++) {
                             String temp = OwnerName[i]; // swap value
                             OwnerName[i] = OwnerName[OwnerName.length - 1 - i];
@@ -332,7 +363,7 @@ public class SearchVehicle extends BaseActivity {
                         list.setVisibility(View.VISIBLE);
                         tvShowHide.setVisibility(View.GONE);
 
-                        CustomList adapter = new CustomList(SearchVehicle.this, FlatNo, VehicleNo,Time,OwnerName);
+                        CustomList adapter = new CustomList(SearchVehicle.this, FlatNo, VehicleNo,Time,OutTime,OwnerName,showUI);
                         list.setAdapter(adapter);
                     }
 
@@ -362,4 +393,5 @@ public class SearchVehicle extends BaseActivity {
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
+
 }

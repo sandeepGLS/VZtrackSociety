@@ -3,4 +3,6 @@
     <string name="title">VZtrack Security</string>
     <string name="deleted">Check Out</string>
     <string name="undo">UNDO</string>
+    <string name="edit">Edit Visitor Name</string>
+
 </resources>

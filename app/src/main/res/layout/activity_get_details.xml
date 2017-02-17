@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="vztrack.gls.com.vztracksociety.AddUserActivity">
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    tools:context="vztrack.gls.com.vztracksociety.GetDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,26 +61,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/etName"
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="25dp"
-                        android:textStyle="bold"
-                        android:text="New User"/>
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:onClick="EditVisitorName"
+                        android:src="@drawable/ic_action_edit"/>
 
-                    <TextView
-                        android:id="@+id/etMobileNo"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="15dp"
-                        android:text="8956234587"/>
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/etName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:text="New User"/>
+
+                        <TextView
+                            android:id="@+id/etMobileNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15dp"
+                            android:text="8956234587"/>
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -117,9 +138,6 @@
                         app:sriv_border_width="1dip"
                         app:sriv_border_color="#000000"
                         app:sriv_oval="false" />
-
-
-
 
                     <TextView
                         android:layout_width="match_parent"
@@ -194,18 +212,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp">
 
-                    <AutoCompleteTextView
+                    <MultiAutoCompleteTextView
                         android:id="@+id/etOwerName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
+                        android:scrollbars="horizontal"
                         android:inputType="textCapCharacters"
                         android:textColor="@color/colorBlack"
                         android:layout_marginRight="10dp"
-                        android:scrollbars="horizontal"
                         android:dropDownWidth="match_parent"
-                        android:hint="Flat no. or owner name(घर नं या मालिक का नाम)"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -217,6 +234,38 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/touch_effect"
                     android:src="@drawable/ic_clear"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/flatScroll"
+                android:layout_width="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <HorizontalScrollView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_marginRight="10dp"
+                    android:fillViewport="true">
+                    <LinearLayout
+                        android:id="@+id/flatList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+               <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:onClick="ClearDataOfFlats"
+                    android:src="@drawable/ic_clear"/>
+
             </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -352,6 +401,7 @@
 
 
             <LinearLayout
+                android:id="@+id/custRowTotalV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -366,7 +416,6 @@
                     android:textColorHint="@color/colorPrimaryDark"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp">
-
                     <EditText
                         android:id="@+id/etVisiters"
                         android:layout_width="match_parent"
@@ -379,9 +428,7 @@
                         android:digits="123456789"
                         android:hint="Total visitors (कुल मुलाक़ाती)"
                         android:textSize="20dp" />
-
                 </android.support.design.widget.TextInputLayout>
-
 
                 <Button
                     android:layout_width="60dp"
@@ -398,9 +445,38 @@
                     android:padding="10dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/color_bg_selector_for_add"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/custRowBadge"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp">
+                    <EditText
+                        android:id="@+id/etVisitersBadge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:maxLength="40"
+                        android:hint="Badge number (बॅज नंबर)"
+                        android:textSize="20dp" />
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -443,18 +519,6 @@
 
 
             </LinearLayout>
-
-
-
-
-            <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="1dp"-->
-            <!--android:layout_marginLeft="2dp"-->
-            <!--android:layout_marginRight="2dp"-->
-            <!--android:background="@color/colorAccent"/>-->
-
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -480,34 +544,35 @@
                     android:fitsSystemWindows="true"
                     android:maxLength="40"/>
             </LinearLayout>
-
         </LinearLayout>
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:layout_marginTop="4dp"
             android:background="#E0E0E0"
             android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
+           <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:textColor="@color/colorWhite"
-                android:background="@drawable/color_bg_selector"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
+                android:gravity="center"
                 android:onClick="Save"
-                android:text="SUBMIT"/>
+                fancy:fb_borderColor="@color/red"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="#3b5998"
+                fancy:fb_focusColor="#5577bd"
+                fancy:fb_iconPosition="right"
+                fancy:fb_radius="6dp"
+                fancy:fb_text="ADD VISITOR"
+                fancy:fb_textColor="#FFFFFF"/>
         </LinearLayout>
-
     </LinearLayout>
-
-
-
 </ScrollView>
 

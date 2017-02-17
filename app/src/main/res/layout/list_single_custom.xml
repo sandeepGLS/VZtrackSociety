@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <com.beardedhen.androidbootstrap.BootstrapWell
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp">
+
+            <TextView
+                android:id="@+id/flatNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"/>
+        </com.beardedhen.androidbootstrap.BootstrapWell>
+    </LinearLayout>
+
+
+
+    <com.beardedhen.androidbootstrap.BootstrapLabel
+        style="@style/wrapping_button"
+        app:bootstrapBrand="success"
+        app:bootstrapHeading="h3"
+        app:typicon="ty_flag"
+        />
+
+</LinearLayout>

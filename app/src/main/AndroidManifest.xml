@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="vztrack.gls.com.vztracksociety">
 
+
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Network State Permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,8 +16,9 @@
         android:icon="@drawable/security_app_logo"
         android:label="@string/title"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:replace="android:icon , android:label">
+        android:theme="@style/AppThemeMain"
+        tools:replace="android:icon , android:label"
+        android:name=".MultiDexApplication">
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
@@ -24,10 +26,10 @@
         <activity
             android:name=".SearchActivity"
             android:windowSoftInputMode="adjustNothing"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

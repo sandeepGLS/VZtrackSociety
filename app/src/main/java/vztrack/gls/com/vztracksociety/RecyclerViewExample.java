@@ -20,15 +20,18 @@ import java.util.Arrays;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class RecyclerViewExample extends Activity {
+/*
 
-    /**
+    */
+/**
      * RecyclerView: The new recycler view replaces the list view. Its more modular and therefore we
      * must implement some of the functionality ourselves and attach it to our recyclerview.
      * <p/>
      * 1) Position items on the screen: This is done with LayoutManagers
      * 2) Animate & Decorate views: This is done with ItemAnimators & ItemDecorators
      * 3) Handle any touch events apart from scrolling: This is now done in our adapter's ViewHolder
-     */
+     *//*
+
 
     private RecyclerView recyclerView;
     private RecyclerViewAdapter mAdapter;
@@ -61,13 +64,17 @@ public class RecyclerViewExample extends Activity {
         ((RecyclerViewAdapter) mAdapter).setMode(Attributes.Mode.Single);
         recyclerView.setAdapter(mAdapter);
 
-        /* Listeners */
+        */
+/* Listeners *//*
+
         recyclerView.setOnScrollListener(onScrollListener);
     }
 
-    /**
+    */
+/**
      * Substitute for our onScrollListener for RecyclerView
-     */
+     *//*
+
     RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -92,7 +99,9 @@ public class RecyclerViewExample extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*// Handle action bar item clicks here. The action bar will
+        */
+/*//*
+/ Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
@@ -105,7 +114,9 @@ public class RecyclerViewExample extends Activity {
             finish();
             return true;
         }
-        return super.onOptionsItemSelected(item);*/
+        return super.onOptionsItemSelected(item);*//*
+
         return  true;
     }
+*/
 }

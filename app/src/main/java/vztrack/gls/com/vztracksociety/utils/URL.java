@@ -10,4 +10,7 @@ public class URL {
     public static final String ADD_NEW_USER_OFFLINE = "/api/newVisitorOffline";
     public static final String FLAT_NUMBER = "/api/availFlats";
     public static final String SEARCH_VEHICLE = "/api/searchVehicle?query=";
+    public static final String EXIT_VISITOR_LIST = "/api/visitorExitList";
+    public static final String EXIT_VISITOR = "/api/exitVisitor?id=";
+    public static final String PURPOSELIST = "/api/getPurposeList";
 }

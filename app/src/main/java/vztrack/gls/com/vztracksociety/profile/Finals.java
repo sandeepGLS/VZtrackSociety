@@ -15,4 +15,6 @@ public class Finals {
     public static final String USERORWATCHMENID = "UserOrWatchmenId";
     public static final String DATE = "Check_Date";
     public static final String EXECUTE = "execute";
+    public static final String SHOW_UI = "show_ui";
+    public static final String TYPE = "type";
 }

@@ -7,11 +7,13 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+import android.view.View;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import vztrack.gls.com.vztracksociety.BaseActivity;
 import vztrack.gls.com.vztracksociety.SearchActivity;
 import vztrack.gls.com.vztracksociety.beans.UserBean;
 import vztrack.gls.com.vztracksociety.beans.VisitorBean;
@@ -19,6 +21,7 @@ import vztrack.gls.com.vztracksociety.profile.SheredPref;
 import vztrack.gls.com.vztracksociety.utils.CallFor;
 import vztrack.gls.com.vztracksociety.utils.CheckConnection;
 import vztrack.gls.com.vztracksociety.utils.DbHelper;
+import vztrack.gls.com.vztracksociety.utils.GetData;
 import vztrack.gls.com.vztracksociety.utils.PostDataForCustumLogin;
 import vztrack.gls.com.vztracksociety.utils.PostDataForOffline;
 
@@ -33,12 +36,25 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(final Context context, final Intent intent) {
             this.context = context;
-            Log.v(LOG_TAG, "Receieved notification about network status");
             dbHelper= new DbHelper(context);
-            isNetworkAvailable(context);
+            boolean data = isNetworkAvailable(context);
+            String UI = SheredPref.getShowUI(context);
+            try{
+                if (UI.equals("1"))
+                {
+                    if(data){
+                        SearchActivity.OutTime(0);
+                    }
+                    else
+                    {
+                        SearchActivity.OutTime(1);
+                    }
+                }
+            }catch (Exception ex){
+                Log.e("Exception "," "+ex);
+            }
 
         }
-
 
         private boolean isNetworkAvailable(Context context) {
             ConnectivityManager connectivity = (ConnectivityManager)
@@ -48,18 +64,15 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
                 if (info != null) {
                     for (int i = 0; i < info.length; i++) {
                         if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-                            if(!isConnected){
-
-                                if(SheredPref.getExecute(context).equals("Execute"))
-                                {
+                            if (!isConnected) {
+                                if (SheredPref.getExecute(context).equals("Execute")) {
                                     PerformBackgroundTask();
                                     isConnected = true;
-                                    SheredPref.setExecute(context,"NotExecute");
-                                }
-                                else
-                                {
+                                    SheredPref.setExecute(context, "NotExecute");
+                                } else {
                                     LoginAttempt();
-                                    SheredPref.setExecute(context,"Execute");
+                                    SheredPref.setExecute(context, "Execute");
+                                    PerformBackgroundTask();
                                 }
                             }
                             return true;
@@ -72,7 +85,6 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         }
 
     private void LoginAttempt() {
-
         UserBean userBean = new UserBean();
         userBean.setUser_name(SheredPref.getUsername(context));
         userBean.setUser_password(SheredPref.getPassword(context));

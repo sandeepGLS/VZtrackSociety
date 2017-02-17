@@ -9,6 +9,26 @@ public class User {
 	String user_name;
 	String user_password;
 	String user_role_id;
+	int ui_exit_active;
+	int type;
+	int purposeCount;
+	int flatCount;
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public int getUi_exit_active() {
+		return ui_exit_active;
+	}
+
+	public void setUi_exit_active(int ui_exit_active) {
+		this.ui_exit_active = ui_exit_active;
+	}
 
 	public String getUser_active() {
 		return user_active;
@@ -64,5 +84,21 @@ public class User {
 
 	public void setUser_role_id(String user_role_id) {
 		this.user_role_id = user_role_id;
+	}
+
+	public int getPurposeCount() {
+		return purposeCount;
+	}
+
+	public void setPurposeCount(int purposeCount) {
+		this.purposeCount = purposeCount;
+	}
+
+	public int getFlatCount() {
+		return flatCount;
+	}
+
+	public void setFlatCount(int flatCount) {
+		this.flatCount = flatCount;
 	}
 }

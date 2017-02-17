@@ -11,22 +11,25 @@
     android:background="@color/colorBackground"
     android:orientation="vertical"
     android:id="@+id/Main_Layout"
-    android:weightSum="4"
-    tools:context="vztrack.gls.com.vztracksociety.LoginActivity">
+    android:weightSum="10"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    tools:context="vztrack.gls.com.vztracksociety.SearchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical"
-        android:layout_weight="1.8"
-        android:gravity="center">
+        android:layout_weight="3.4"
+        android:gravity="center_horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textStyle="bold"
-            android:layout_marginBottom="5dp"
-            android:textSize="55dp"
+            android:layout_marginBottom="2dp"
+            android:textSize="45dp"
             android:textColor="@color/colorWhite"/>
 
         <LinearLayout
@@ -52,6 +55,7 @@
                     android:layout_alignParentEnd="true" />
 
                 <TextView
+                    android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:layout_height="wrap_content"
@@ -60,8 +64,7 @@
                     android:textColor="@color/dark_gray"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
+                    android:layout_alignParentStart="true"/>
             </RelativeLayout>
 
             <TextView
@@ -73,46 +76,56 @@
                 android:textSize="32dp"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"
-                android:text="New Gagangiri"
-                android:textColor="@color/dark_gray"/>
+                android:ellipsize="marquee"
+                android:scrollHorizontally="true"
+                android:marqueeRepeatLimit ="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:textColor="@color/dark_gray"
+                android:singleLine="true"  />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_password"
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="1dp"
-                android:textColor="@color/colorBlack"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
-                android:layout_height="wrap_content">
+                android:weightSum="10"
+                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/phoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Phone number (फोन नं.)"
-                    android:singleLine="true"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:textSize="25dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"/>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_password"
+                    android:layout_width="0dp"
+                    android:layout_weight="9"
+                    android:textColor="@color/colorBlack"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/phoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Phone number (फोन नं.)"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textSize="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"/>
+                </android.support.design.widget.TextInputLayout>
 
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:id="@+id/counter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="3dp"
-                android:textSize="20dp"
-                android:textColor="@color/colorPrimary"
-                android:text="0"/>
-
-
+                <TextView
+                    android:id="@+id/counter"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="3dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="0/10"/>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
@@ -120,7 +133,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <Button
+                <!--<Button
                     android:id="@+id/btnSubmit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,43 +144,205 @@
                     android:textColor="@color/colorWhite"
                     android:background="@drawable/color_bg_selector"
                     android:onClick="Search"
-                    android:text="SUBMIT"/>
+                    android:text="SUBMIT"/>-->
 
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/btnSubmit"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:onClick="Search"
+                    fancy:fb_borderColor="@color/colorBlack"
+                    fancy:fb_borderWidth="1dp"
+                    fancy:fb_defaultColor="#3b5998"
+                    fancy:fb_focusColor="#5577bd"
+                    fancy:fb_iconPosition="right"
+                    fancy:fb_radius="6dp"
+                    fancy:fb_text="ADD VISITOR"
+                    fancy:fb_textColor="#FFFFFF"/>
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:gravity="center">
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="0dp">
 
         <Button
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:id="@+id/SearchVisitors"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:textStyle="bold"
             android:textColor="@color/colorBackground"
             android:textSize="20dp"
             android:background="@drawable/touch_effect"
             android:onClick="SearchVehicle"
             android:textAllCaps="false"
-            android:text="Search Visitors"/>
+            android:text="Search Visitor"/>
+
+       <!-- <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/SearchVisitors"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:onClick="SearchVehicle"
+            android:textAllCaps="false"
+            android:text="Search Visitors"
+            fancy:fb_borderColor="@color/colorBlack"
+            fancy:fb_borderWidth="1dp"
+            fancy:fb_defaultColor="#ffffff"
+            fancy:fb_focusColor="#5577bd"
+            fancy:fb_iconPosition="right"
+            fancy:fb_radius="6dp"
+            fancy:fb_text="Search Visitor"
+            fancy:fb_textColor="@color/colorPrimaryDark"/>-->
+
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/outLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.9"
-        android:gravity="center">
+        android:layout_weight="5.1"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#009688"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="27dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginRight="2dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorWhite"
+                android:text="Exit Visitor\nएग्जिट विजिटर"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/searchForExit"
+                android:layout_weight="2"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBackground"
+                android:background="@drawable/edittext_background_search"
+                android:hint="Search by Mob. no/Name/Vehicle no."/>
+        </LinearLayout>
+
+       <!-- <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="2dp"
+            android:background="#009688"/>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:text="Visitor Name"/>
+
+                <TextView
+                    android:id="@+id/flatAndEmp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:text="Flat No."/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorBlack"
+                    android:text="Vehicle No."/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack"
+                    android:text="In Time"/>
+
+            </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="2dp"
             android:scrollbars="vertical" />
 
+        <TextView
+            android:id="@+id/noVisitorTv"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:padding="2dp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_gray"
+            android:textSize="25dp"
+            android:text="\nNo Visitor for Exit \n\n नो विजिटर फॉर एग्जिट"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/noVisitorList"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="4.9"
+        android:visibility="gone"
+        android:padding="2dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:textSize="25dp"
+        android:text="\nVisitor exit time feature not available in offline\nPlease connect to Internet \n\n यह सुविधा ऑफलाइन मोड में उपलब्ध नहीं है"/>
+
 </LinearLayout>

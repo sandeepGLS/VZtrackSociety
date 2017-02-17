@@ -3,7 +3,6 @@ package vztrack.gls.com.vztracksociety.utils;
 import android.app.ProgressDialog;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -41,12 +40,22 @@ public class GetData extends AsyncTask {
         if(callFor==CallFor.SEARCHVEHICLE){
             url = url+URL.SEARCH_VEHICLE+extendedUrl;
         }
+        if(callFor==CallFor.EXIT_VISITOR_LIST){
+            url = url+URL.EXIT_VISITOR_LIST;
+        }
+        if(callFor==CallFor.EXIT_VISITOR){
+            url = url+URL.EXIT_VISITOR+extendedUrl;
+        }
+        if(callFor==CallFor.PURPOSE_LIST){
+            url = url+URL.PURPOSELIST;
+        }
         return url;
     }
 
     @Override
     protected void onPreExecute() {
         progressDialog = ProgressDialog.show(activity,"","Loading...");
+
     }
 
     @Override
@@ -66,8 +75,8 @@ public class GetData extends AsyncTask {
         {
             super.onPostExecute(o);
             progressDialog.dismiss();
-            if(result.contains("org.apache.http.conn.ConnectTimeoutException")){
-                ShowToast("Please check intenet connection \n इंटरनेट कनेक्शन की जाँच करें");
+            if(result.contains("ConnectTimeoutException")){
+                ShowToast("Please check intenet connection \n\n इंटरनेट कनेक्शन की जाँच करें");
             }else{
                 activity.onGetResponse(result, callFor);
             }

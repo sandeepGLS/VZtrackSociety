@@ -308,7 +308,6 @@ public class AddUserActivity extends BaseActivity {
 
         });
         files[0].delete();
-
     }
 
 
@@ -316,9 +315,10 @@ public class AddUserActivity extends BaseActivity {
     {
         Toast toast = Toast.makeText(this, Text, Toast.LENGTH_LONG);
         View view = toast.getView();
-        view.setBackgroundResource(R.color.red);
+        view.setBackgroundResource(R.drawable.toast_bg);
         LinearLayout toastLayout = (LinearLayout) toast.getView();
         TextView toastTV = (TextView) toastLayout.getChildAt(0);
+        toastTV.setGravity(Gravity.CENTER);
         toastTV.setTextSize(20);
         toastTV.setTypeface(null, Typeface.BOLD);
         toast.setGravity(Gravity.CENTER, 0, 0);

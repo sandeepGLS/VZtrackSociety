@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorWhite"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginBottom="5dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/done_icon"/>
+
+
+        <TextView
+            android:id="@+id/tvText"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="SUCCESS"
+            android:textColor="@color/colorBackground"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:text="Visit Again!"
+            android:textColor="@color/colorBackground"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

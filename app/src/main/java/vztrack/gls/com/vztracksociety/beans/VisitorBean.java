@@ -11,6 +11,7 @@ public class VisitorBean {
     String mobile_no;
     String first_name;
     String last_name;
+    String nameInHindi;
     String flat_no;
     String visit_purpose;
     String vehicle_no;
@@ -28,6 +29,14 @@ public class VisitorBean {
     String from;
     boolean oldDoc;
     boolean old;
+
+    public String getNameInHindi() {
+        return nameInHindi;
+    }
+
+    public void setNameInHindi(String nameInHindi) {
+        this.nameInHindi = nameInHindi;
+    }
 
     public boolean isOld() {
         return old;

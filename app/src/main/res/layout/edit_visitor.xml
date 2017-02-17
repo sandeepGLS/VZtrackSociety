@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    tools:context="vztrack.gls.com.vztracksociety.AddUserActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_weight="0.2"
+                android:layout_height="wrap_content"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:layout_marginTop="2dp">
+
+                <EditText
+                    android:id="@+id/etFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:singleLine="true"
+                    android:textSize="20dp"
+                    android:inputType="textCapCharacters"
+                    android:hint="First Name (पहला नाम)"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:layout_marginTop="1dp">
+
+                <EditText
+                    android:id="@+id/etLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:singleLine="true"
+                    android:textSize="20dp"
+                    android:inputType="textCapCharacters"
+                    android:hint="Last Name (अंतिम नाम)"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_cancle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                fancy:fb_borderColor="#7ab800"
+                fancy:fb_borderWidth="1dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                fancy:fb_defaultColor="#3b5998"
+                fancy:fb_focusColor="#5474b8"
+                fancy:fb_radius="5dp"
+                fancy:fb_text="Cancel"/>
+
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                fancy:fb_borderColor="#3b5998"
+                fancy:fb_borderWidth="1dp"
+                fancy:fb_defaultColor="#7ab800"
+                fancy:fb_focusColor="#9bd823"
+                fancy:fb_radius="5dp"
+                fancy:fb_text="Save"/>
+
+        </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+</LinearLayout>

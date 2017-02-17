@@ -21,8 +21,8 @@ import java.net.URI;
 import java.util.ArrayList;
 
 public class ServerConnection {
-   // public static final int HTTP_TIMEOUT = 3 * 60 * 1000;
-    public static final int HTTP_TIMEOUT = 30000;
+    public static final int HTTP_TIMEOUT = 3 * 60 * 1000;
+    //public static final int HTTP_TIMEOUT = 30000;
     private static HttpClient mHttpClient;
     private static HttpClient getHttpClient() {
         if (mHttpClient == null) {

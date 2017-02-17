@@ -68,8 +68,6 @@ public class PostDataForOffline extends AsyncTask {
                 AddUserResponce addUserResponce=new Gson().fromJson(result,AddUserResponce.class);
 
                 if (addUserResponce.getCode().equals("SUCCESS")) {
-
-                    Log.e(" Inside Delete ","");
                     dbHelper = new DbHelper(activity);
                     dbHelper.deleteData(id);
                 }

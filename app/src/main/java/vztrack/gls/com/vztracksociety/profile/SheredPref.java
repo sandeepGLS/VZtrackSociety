@@ -111,4 +111,25 @@ public class SheredPref {
         editor.putString(Finals.EXECUTE,date);
         editor.commit();
     }
+
+    public static String getShowUI(Context context){
+        SharedPreferences sp = context.getSharedPreferences(Finals.SHOW_UI, Context.MODE_PRIVATE);
+        return sp.getString(Finals.SHOW_UI,"");
+    }
+    public static void setShowUI(Context context,String val){
+        SharedPreferences sp = context.getSharedPreferences(Finals.SHOW_UI, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(Finals.SHOW_UI,val);
+        editor.commit();
+    }
+    public static String getType(Context context){
+        SharedPreferences sp = context.getSharedPreferences(Finals.TYPE, Context.MODE_PRIVATE);
+        return sp.getString(Finals.TYPE,"");
+    }
+    public static void setType(Context context,String val){
+        SharedPreferences sp = context.getSharedPreferences(Finals.TYPE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(Finals.TYPE,val);
+        editor.commit();
+    }
 }

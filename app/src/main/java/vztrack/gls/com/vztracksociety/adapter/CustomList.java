@@ -20,9 +20,11 @@ public class CustomList extends ArrayAdapter<String>{
     private final String[] flat_no;
     private final String[] vehicle_no;
     private final String[] time;
+    private final String[] out_time;
     private final String[] owner_name;
+    private  String UI;
 
-    public CustomList(Activity context, String[] flat_no, String[] vehicle_no, String[] time,String[] owner_name)
+    public CustomList(Activity context, String[] flat_no, String[] vehicle_no, String[] time,String[] out_time,String[] owner_name,String UI)
     {
         super(context, R.layout.list_single, flat_no);
         this.context = context;
@@ -30,7 +32,8 @@ public class CustomList extends ArrayAdapter<String>{
         this.vehicle_no = vehicle_no;
         this.owner_name = owner_name;
         this.time = time;
-
+        this.out_time = out_time;
+        this.UI = UI;
     }
     @Override
     public View getView(int position, View view, ViewGroup parent) {
@@ -40,11 +43,14 @@ public class CustomList extends ArrayAdapter<String>{
         TextView tvFlatNo = (TextView) rowView.findViewById(R.id.tvFlatNo);
         TextView tvVehicleNo = (TextView) rowView.findViewById(R.id.tvVehicleNo);
         TextView  tvTime= (TextView) rowView.findViewById(R.id.tvtime);
+        TextView  tvOutTime= (TextView) rowView.findViewById(R.id.tvouttime);
         TextView  tvOwenerName= (TextView) rowView.findViewById(R.id.tvOwenerName);
-
+        if(UI.equals("0"))
+            tvOutTime.setVisibility(View.GONE);
         tvFlatNo.setText(flat_no[position]);
         tvVehicleNo.setText(vehicle_no[position]);
         tvTime.setText(time[position]);
+        tvOutTime.setText(out_time[position]);
         tvOwenerName.setText(owner_name[position]);
         return rowView;
     }

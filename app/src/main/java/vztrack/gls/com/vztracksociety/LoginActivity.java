@@ -4,8 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.design.widget.Snackbar;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.gson.Gson;
 
 import java.text.ParseException;
@@ -22,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import vztrack.gls.com.vztracksociety.beans.UserBean;
+import vztrack.gls.com.vztracksociety.beans.VisitPurposeResponce;
 import vztrack.gls.com.vztracksociety.profile.FlatResponce;
 import vztrack.gls.com.vztracksociety.profile.FlatsList;
 import vztrack.gls.com.vztracksociety.profile.LoginResponse;
@@ -55,14 +57,14 @@ public class LoginActivity extends BaseActivity {
 
         db = new DatabaseHandler(LoginActivity.this);
 
-        //SheredPref.setUSername(this,"");
-        //SheredPref.setPassword(this,"");
-
-
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
+
+        if(SheredPref.getUsername(this)!=null || !SheredPref.getUsername(this).equals("")){
+            etUsername.setText(SheredPref.getUsername(this));
+        }
 
         tvForget = (TextView) findViewById(R.id.tvForget);
 
@@ -89,16 +91,13 @@ public class LoginActivity extends BaseActivity {
         });
 
         getSupportActionBar().hide();
-
         tvForget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Snackbar.make(v, "Contact VZtrack on ", Snackbar.LENGTH_LONG).setAction("9821824818", new View.OnClickListener() {
+                Snackbar.make(v, "Contact VZtrack on ", Snackbar.LENGTH_LONG).setAction("90750 16367", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        Uri number = Uri.parse("tel:9821824818");
+                        Uri number = Uri.parse("tel:90750 16367");
                         Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
                         startActivity(callIntent);
                     }
@@ -107,14 +106,9 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-
-
     public void Login(View v)
     {
-
         btnSubmit.setEnabled(false);
-
-
         if(etUsername.getText().toString().trim().equals("") || etPassword.getText().toString().trim().equals(""))
         {
             Toast.makeText(this,"Username or Password should not be blank",Toast.LENGTH_LONG).show();
@@ -136,24 +130,8 @@ public class LoginActivity extends BaseActivity {
             }
         }
 
+        btnSubmit.setEnabled(true);
     }
-
-    public void ForgetPassword(View v)
-    {
-
-                //Toast.makeText(this,"Forget ",Toast.LENGTH_LONG).show();
-
-                Snackbar.make(v, "Contact VZtrack on ", Snackbar.LENGTH_LONG).setAction("90750 16367", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Uri number = Uri.parse("tel:9075016367");
-                        Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-                        startActivity(callIntent);
-                    }
-                }).show();
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -175,16 +153,13 @@ public class LoginActivity extends BaseActivity {
             }
         });
         alert.show();
-
     }
 
     private void attemptLogin() {
-
         UserBean userBean = new UserBean();
         userBean.setUser_name(etUsername.getEditableText().toString().trim());
         userBean.setUser_password(etPassword.getEditableText().toString().trim());
         userBean.setUser_role_id("4");
-
         new PostData(new Gson().toJson(userBean), LoginActivity.this, CallFor.LOGIN).execute();
     }
 
@@ -192,6 +167,7 @@ public class LoginActivity extends BaseActivity {
     public void onGetResponse(String response, String callFor) {
         LoginResponse loginResponse=new Gson().fromJson(response,LoginResponse.class);
         FlatResponce flatResponce = new Gson().fromJson(response, FlatResponce.class);
+        VisitPurposeResponce visitPurposeResponce = new Gson().fromJson(response, VisitPurposeResponce.class);
         if (response == null) {
             return;
         }
@@ -207,12 +183,21 @@ public class LoginActivity extends BaseActivity {
                         SheredPref.setSocietyName(this,loginResponse.getSocity().getSocity_name());
                         SheredPref.setUSername(this,etUsername.getEditableText().toString().trim());
                         SheredPref.setPassword(this,etPassword.getEditableText().toString().trim());
+                        SheredPref.setShowUI(this,""+loginResponse.getUser().getUi_exit_active());
+                        SheredPref.setType(this,""+loginResponse.getUser().getType());
+                        if(db.getPurposeTableCount()!=loginResponse.getUser().getPurposeCount())
+                        {
+                            new GetData(this,CallFor.PURPOSE_LIST,"").execute();
+                        }
+                        if(db.getFlatCount()!=loginResponse.getUser().getFlatCount())
+                        {
+                            new GetData(this, CallFor.FLATSLIST, "").execute();
+                        }
                         Intent intent = new Intent(LoginActivity.this,SearchActivity.class);
                         startActivity(intent);
-
                         etUsername.setText("");
                         etPassword.setText("");
-                    SavedDate = SheredPref.getDate(this);
+                    /*SavedDate = SheredPref.getDate(this);
                     if(SavedDate=="")
                     {
                         db.deleteContact();
@@ -230,7 +215,7 @@ public class LoginActivity extends BaseActivity {
                     }
                     if(compareToDay(GetTodayDate(),SavedDate)==0)
                     {
-                    }
+                    }*/
                 }
                 else if (loginResponse.getCode().equals("ERROR")) {
                     Toast.makeText(this,loginResponse.getMessage(),Toast.LENGTH_SHORT).show();
@@ -248,7 +233,6 @@ public class LoginActivity extends BaseActivity {
             for(int i=0;i<flatResponce.getAvailFlats().size();i++)
             {
                 NameAndFlat.add(flatResponce.getAvailFlats().get(i).getFlatNo()+"-"+flatResponce.getAvailFlats().get(i).getFlatOwnerName());
-
             }
 
             for(int i=0;i<NameAndFlat.size();i++)
@@ -256,7 +240,41 @@ public class LoginActivity extends BaseActivity {
                 db.addFlatList(new FlatsList(NameAndFlat.get(i)));
             }
         }
+        if (callFor.equals(CallFor.FLATSLIST)) {
+            db.deleteContact();
+            NameAndFlat.clear();
+            for (int i = 0; i < flatResponce.getAvailFlats().size(); i++) {
+                NameAndFlat.add(flatResponce.getAvailFlats().get(i).getFlatNo() + "-" + flatResponce.getAvailFlats().get(i).getFlatOwnerName());
+            }
 
+            for (int i = 0; i < NameAndFlat.size(); i++) {
+                db.addFlatList(new FlatsList(NameAndFlat.get(i)));
+            }
+        }
+        if (callFor.equals(CallFor.PURPOSE_LIST)) {
+            Log.e("IN CALL","");
+            if (visitPurposeResponce.getCode().equals("SUCCESS")) {
+                int size = visitPurposeResponce.getVisitPurposeBeans().size();
+                Log.e("SIZE"," "+size);
+                String eng[] = new String[size];
+                String hin[] = new String[size];
+                String mar[] = new String[size];
+                for(int i=0;i<size;i++){
+                    if(i==0){
+                        eng[i] = visitPurposeResponce.getVisitPurposeBeans().get(i).getEnglishText();
+                        hin[i] = visitPurposeResponce.getVisitPurposeBeans().get(i).getHindiText();
+                        mar[i] = visitPurposeResponce.getVisitPurposeBeans().get(i).getMarathiText();
+                    }else{
+                        eng[i] = visitPurposeResponce.getVisitPurposeBeans().get(i).getEnglishText();
+                        hin[i] = visitPurposeResponce.getVisitPurposeBeans().get(i).getHindiText();
+                        mar[i] = visitPurposeResponce.getVisitPurposeBeans().get(i).getMarathiText();
+                    }
+                }
+                db.deletePurposeData();
+                db.insertIntoPurpose(eng,hin,mar);
+                Log.e("DATA CNT "," "+db.getPurposeTableCount());
+            }
+        }
     }
 
     public String  GetTodayDate()
